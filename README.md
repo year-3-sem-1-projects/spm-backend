@@ -27,4 +27,4 @@ git commit -m "<Commit message>"
 git push --set-upstream origin feature/<BRANCH_NAME>
 ```
 7. Make a Pull Request. 
-_See the guide for more details [Link](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)_
+_[See the guide for more details](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)_
