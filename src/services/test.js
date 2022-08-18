@@ -6,5 +6,5 @@ export const createTest = async ({ name }) => {
 }
 
 export const readTest = async () => {
-  return findTest()
+  return await findTest()
 }

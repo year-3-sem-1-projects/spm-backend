@@ -10,9 +10,8 @@ export const create_Test = asyncHandler(async (req, res) => {
 })
 
 export const read_Test = asyncHandler(async (req, res) => {
-  const result = readTest()
+  const result = await readTest()
   if (!result) return makeResponse({ res, status: 500, message: 'Read failed' })
   if (result.status) return makeResponse({ res, ...result })
-  console.log(result)
-  return makeResponse({ res, result, message: 'Read Successful.' })
+  return makeResponse({ res, data: result, message: 'Read Successful.' })
 })

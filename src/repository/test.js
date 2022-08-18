@@ -6,6 +6,6 @@ export const addTest = async (test) => {
 }
 
 export const findTest = async () => {
-  const newTest = (await new Test().find({})).toObject()
-  return newTest
+  const readTest = await Test.find({}, { _id: 0, name: 1 })
+  return readTest
 }
