@@ -8,6 +8,7 @@ import logger from './utils/logger'
 import router from './routes/index.routes'
 import { isCelebrateError } from 'celebrate'
 import { makeResponse } from './utils/response'
+import logger from "./utils/logger";
 
 const app = express()
 
