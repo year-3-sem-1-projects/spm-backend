@@ -4,11 +4,10 @@ import compression from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
 import connectDB from './database'
-import logger from './utils/logger'
 import router from './routes/index.routes'
 import { isCelebrateError } from 'celebrate'
 import { makeResponse } from './utils/response'
-import logger from "./utils/logger";
+import logger from './utils/logger'
 
 const app = express()
 
