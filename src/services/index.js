@@ -6,7 +6,7 @@ import {
   deletePost,
   searchPosts,
   increaseViewCount,
-  // getAllPostsOrderByViewCount,
+  getAllPostsOrderByViewCount,
 } from './Post.service'
 
 export default {
@@ -17,5 +17,5 @@ export default {
   deletePost,
   searchPosts,
   increaseViewCount,
-  // getAllPostsOrderByViewCount,
+  getAllPostsOrderByViewCount,
 }

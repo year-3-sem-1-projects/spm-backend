@@ -100,13 +100,13 @@ export const increaseViewCount = async (postId) => {
 }
 
 // Get all posts oder by most viewCount
-// export const getAllPostsOrderByViewCount = async () => {
-//   return await PostModel.find({})
-//     .sort({ viewCount: -1 })
-//     .then((posts) => {
-//       return posts
-//     })
-//     .catch((error) => {
-//       throw new Error(error.message)
-//     })
-// }
+export const getAllPostsOrderByViewCount = async () => {
+  return await PostModel.find({})
+    .sort({ viewCount: -1 })
+    .then((posts) => {
+      return posts
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}

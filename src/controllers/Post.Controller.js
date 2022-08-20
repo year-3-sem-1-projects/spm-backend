@@ -72,12 +72,12 @@ export const increaseViewCount = asyncHandler(async (req, res) => {
   })
 })
 
-// export const getAllPostsOrderByViewCount = asyncHandler(async (req, res) => {
-//   const result = await PostService.getAllPostsOrderByViewCount()
-//   if (!result) return makeResponse({ res, status: 500, message: 'Get All post Failed' })
-//   if (result.status) return makeResponse({ res, ...result })
-//   return makeResponse({
-//     res,
-//     message: 'Get All post Successfully ',
-//   })
-// })
+export const getAllPostsOrderByViewCount = asyncHandler(async (req, res) => {
+  const result = await PostService.getAllPostsOrderByViewCount()
+  if (!result) return makeResponse({ res, status: 500, message: 'Get All post Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Get All post Successfully ',
+  })
+})
