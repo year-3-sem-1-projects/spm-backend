@@ -1,7 +1,7 @@
-import express from 'express'
+import express from "express";
 
-const authRouter = express.Router()
+const authRouter = express.Router();
 
-authRouter.post('/signup')
+authRouter.post("/signup");
 
-export default authRouter
+export default authRouter;
