@@ -1,7 +1,7 @@
 import {
   insertPost,
   getAllPosts,
-  // getOnePost,
+  getOnePost,
   // updatePost,
   // deletePost,
   // searchPosts,
@@ -12,7 +12,7 @@ import {
 export default {
   insertPost,
   getAllPosts,
-  // getOnePost,
+  getOnePost,
   // updatePost,
   // deletePost,
   // searchPosts,

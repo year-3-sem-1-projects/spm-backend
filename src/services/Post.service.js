@@ -12,7 +12,7 @@ export const insertPost = async (postData) => {
     })
 }
 
-Get all posts
+//Get all posts
 export const getAllPosts = async () => {
   return await PostModel.find({})
     .then((posts) => {
@@ -24,19 +24,19 @@ export const getAllPosts = async () => {
 }
 
 // Get one post
-// export const getOnePost = async (postId) => {
-//   return await PostModel.findById(postId)
-//     .then((post) => {
-//       if (post) {
-//         return post
-//       } else {
-//         throw new Error('Post not found')
-//       }
-//     })
-//     .catch((error) => {
-//       throw new Error(error.message)
-//     })
-// }
+export const getOnePost = async (postId) => {
+  return await PostModel.findById(postId)
+    .then((post) => {
+      if (post) {
+        return post
+      } else {
+        throw new Error('Post not found')
+      }
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
 
 // Update one post
 // export const updatePost = async (postId, postData) => {
