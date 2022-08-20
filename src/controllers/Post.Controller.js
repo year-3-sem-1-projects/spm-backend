@@ -62,15 +62,15 @@ export const searchPosts = asyncHandler(async (req, res) => {
   })
 })
 
-// export const increaseViewCount = asyncHandler(async (req, res) => {
-//   const result = await PostService.increaseViewCount(req.params.id)
-//   if (!result) return makeResponse({ res, status: 500, message: 'Increase View Count is Failed' })
-//   if (result.status) return makeResponse({ res, ...result })
-//   return makeResponse({
-//     res,
-//     message: 'Increase View Count is Successfully ',
-//   })
-// })
+export const increaseViewCount = asyncHandler(async (req, res) => {
+  const result = await PostService.increaseViewCount(req.params.id)
+  if (!result) return makeResponse({ res, status: 500, message: 'Increase View Count is Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Increase View Count is Successfully ',
+  })
+})
 
 // export const getAllPostsOrderByViewCount = asyncHandler(async (req, res) => {
 //   const result = await PostService.getAllPostsOrderByViewCount()

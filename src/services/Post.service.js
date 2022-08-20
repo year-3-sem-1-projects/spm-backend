@@ -84,20 +84,20 @@ export const searchPosts = async (searchTerm) => {
 }
 
 // Incraese post views
-// export const increaseViewCount = async (postId) => {
-//   await PostModel.findByIdAndUpdate(postId, { $inc: { viewCount: 1 } })
-//   return await PostModel.findById(postId)
-//     .then((post) => {
-//       if (post) {
-//         return post
-//       } else {
-//         throw new Error('Post not found')
-//       }
-//     })
-//     .catch((error) => {
-//       throw new Error(error.message)
-//     })
-// }
+export const increaseViewCount = async (postId) => {
+  await PostModel.findByIdAndUpdate(postId, { $inc: { viewCount: 1 } })
+  return await PostModel.findById(postId)
+    .then((post) => {
+      if (post) {
+        return post
+      } else {
+        throw new Error('Post not found')
+      }
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
 
 // Get all posts oder by most viewCount
 // export const getAllPostsOrderByViewCount = async () => {

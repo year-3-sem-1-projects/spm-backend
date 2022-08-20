@@ -5,7 +5,7 @@ import {
   updatePost,
   deletePost,
   searchPosts,
-  // increaseViewCount,
+  increaseViewCount,
   // getMostPopularPosts,
 } from './Post.controller'
 
@@ -16,6 +16,6 @@ export default {
   updatePost,
   deletePost,
   searchPosts,
-  // increaseViewCount,
+  increaseViewCount,
   // getMostPopularPosts,
 }
