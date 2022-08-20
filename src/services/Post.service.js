@@ -39,21 +39,21 @@ export const getOnePost = async (postId) => {
 }
 
 // Update one post
-// export const updatePost = async (postId, postData) => {
-//   return await PostModel.findByIdAndUpdate(postId, postData, {
-//     new: true,
-//   })
-//     .then((post) => {
-//       if (post) {
-//         return post
-//       } else {
-//         throw new Error('Post not found')
-//       }
-//     })
-//     .catch((error) => {
-//       throw new Error(error.message)
-//     })
-// }
+export const updatePost = async (postId, postData) => {
+  return await PostModel.findByIdAndUpdate(postId, postData, {
+    new: true,
+  })
+    .then((post) => {
+      if (post) {
+        return post
+      } else {
+        throw new Error('Post not found')
+      }
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
 
 // Delete one post
 // export const deletePost = async (postId) => {

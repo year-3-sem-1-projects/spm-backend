@@ -32,15 +32,15 @@ export const getOnePost = asyncHandler(async (req, res) => {
   })
 })
 
-// export const updatePost = asyncHandler(async (req, res) => {
-//   const result = await PostService.updatePost(req.params.id, req.body)
-//   if (!result) return makeResponse({ res, status: 500, message: 'Update Post Failed' })
-//   if (result.status) return makeResponse({ res, ...result })
-//   return makeResponse({
-//     res,
-//     message: 'Update Post Successfully ',
-//   })
-// })
+export const updatePost = asyncHandler(async (req, res) => {
+  const result = await PostService.updatePost(req.params.id, req.body)
+  if (!result) return makeResponse({ res, status: 500, message: 'Update Post Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Update Post Successfully ',
+  })
+})
 
 // export const deletePost = asyncHandler(async (req, res) => {
 //   const result = await PostService.deletePost(req.params.id)
