@@ -12,15 +12,15 @@ export const insertPost = asyncHandler(async (req, res) => {
   })
 })
 
-// export const getAllPosts = asyncHandler(async (req, res) => {
-//   const result = await PostService.getAllPosts()
-//   if (!result) return makeResponse({ res, status: 500, message: 'Get All Post Failed' })
-//   if (result.status) return makeResponse({ res, ...result })
-//   return makeResponse({
-//     res,
-//     message: 'Get All Post Successfully ',
-//   })
-// })
+export const getAllPosts = asyncHandler(async (req, res) => {
+  const result = await PostService.getAllPosts()
+  if (!result) return makeResponse({ res, status: 500, message: 'Get All Post Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Get All Post Successfully ',
+  })
+})
 
 // export const getOnePost = asyncHandler(async (req, res) => {
 //   const result = await PostService.getOnePost(req.params.id)

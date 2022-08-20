@@ -6,8 +6,8 @@ import {
   // deletePost,
   // searchPosts,
   // increaseViewCount,
-  // getMostPopularPosts,
-} from './Post.controller'
+  // getAllPostsOrderByViewCount,
+} from './Post.service'
 
 export default {
   insertPost,
@@ -17,5 +17,5 @@ export default {
   // deletePost,
   // searchPosts,
   // increaseViewCount,
-  // getMostPopularPosts,
+  // getAllPostsOrderByViewCount,
 }
