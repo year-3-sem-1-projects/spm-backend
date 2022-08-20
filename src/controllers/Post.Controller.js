@@ -52,15 +52,15 @@ export const deletePost = asyncHandler(async (req, res) => {
   })
 })
 
-// export const searchPosts = asyncHandler(async (req, res) => {
-//   const result = await PostService.searchPosts(req.params.search)
-//   if (!result) return makeResponse({ res, status: 500, message: 'Search Post Failed' })
-//   if (result.status) return makeResponse({ res, ...result })
-//   return makeResponse({
-//     res,
-//     message: 'Search Post Successfully ',
-//   })
-// })
+export const searchPosts = asyncHandler(async (req, res) => {
+  const result = await PostService.searchPosts(req.params.search)
+  if (!result) return makeResponse({ res, status: 500, message: 'Search Post Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Search Post Successfully ',
+  })
+})
 
 // export const increaseViewCount = asyncHandler(async (req, res) => {
 //   const result = await PostService.increaseViewCount(req.params.id)

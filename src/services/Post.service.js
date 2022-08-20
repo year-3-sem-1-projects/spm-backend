@@ -71,17 +71,17 @@ export const deletePost = async (postId) => {
 }
 
 // Search post category
-// export const searchPosts = async (searchTerm) => {
-//   return await PostModel.find({
-//     $or: [{ category: { $regex: searchTerm, $options: 'i' } }],
-//   })
-//     .then((posts) => {
-//       return posts
-//     })
-//     .catch((error) => {
-//       throw new Error(error.message)
-//     })
-// }
+export const searchPosts = async (searchTerm) => {
+  return await PostModel.find({
+    $or: [{ category: { $regex: searchTerm, $options: 'i' } }],
+  })
+    .then((posts) => {
+      return posts
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
 
 // Incraese post views
 // export const increaseViewCount = async (postId) => {

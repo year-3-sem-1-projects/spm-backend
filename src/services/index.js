@@ -4,7 +4,7 @@ import {
   getOnePost,
   updatePost,
   deletePost,
-  // searchPosts,
+  searchPosts,
   // increaseViewCount,
   // getAllPostsOrderByViewCount,
 } from './Post.service'
@@ -15,7 +15,7 @@ export default {
   getOnePost,
   updatePost,
   deletePost,
-  // searchPosts,
+  searchPosts,
   // increaseViewCount,
   // getAllPostsOrderByViewCount,
 }
