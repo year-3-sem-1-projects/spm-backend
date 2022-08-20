@@ -55,6 +55,22 @@ const UserSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
+    logins: {
+      type: [
+        {
+          number_of_logins: {
+            type: Number,
+            required: false,
+            default: 0,
+          },
+          date_of_login: {
+            type: Number,
+            required: false,
+          },
+        },
+      ],
+      required: false,
+    },
   },
   {
     versionKey: false,
