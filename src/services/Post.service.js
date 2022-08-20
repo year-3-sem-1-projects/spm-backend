@@ -56,19 +56,19 @@ export const updatePost = async (postId, postData) => {
 }
 
 // Delete one post
-// export const deletePost = async (postId) => {
-//   return await PostModel.findByIdAndDelete(postId)
-//     .then((post) => {
-//       if (post) {
-//         return post
-//       } else {
-//         throw new Error('Post not found')
-//       }
-//     })
-//     .catch((error) => {
-//       throw new Error(error.message)
-//     })
-// }
+export const deletePost = async (postId) => {
+  return await PostModel.findByIdAndDelete(postId)
+    .then((post) => {
+      if (post) {
+        return post
+      } else {
+        throw new Error('Post not found')
+      }
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
 
 // Search post category
 // export const searchPosts = async (searchTerm) => {

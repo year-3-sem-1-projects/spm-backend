@@ -42,15 +42,15 @@ export const updatePost = asyncHandler(async (req, res) => {
   })
 })
 
-// export const deletePost = asyncHandler(async (req, res) => {
-//   const result = await PostService.deletePost(req.params.id)
-//   if (!result) return makeResponse({ res, status: 500, message: 'Delete Post Failed' })
-//   if (result.status) return makeResponse({ res, ...result })
-//   return makeResponse({
-//     res,
-//     message: 'Delete Post Successfully ',
-//   })
-// })
+export const deletePost = asyncHandler(async (req, res) => {
+  const result = await PostService.deletePost(req.params.id)
+  if (!result) return makeResponse({ res, status: 500, message: 'Delete Post Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Delete Post Successfully ',
+  })
+})
 
 // export const searchPosts = asyncHandler(async (req, res) => {
 //   const result = await PostService.searchPosts(req.params.search)
