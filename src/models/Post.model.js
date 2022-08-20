@@ -13,10 +13,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // createdAt: {
-  //   type: Date,
-  //   default: new Date(),
-  // },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
   viewCount: {
     type: Number,
     default: 0,
