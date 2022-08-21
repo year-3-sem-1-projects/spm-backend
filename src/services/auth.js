@@ -4,6 +4,7 @@ import { createUser, findOneAndUpdateUser, getOneUser } from '../repository/user
 
 export const authRegister = async ({ email, username, password }) => {
   const user = await getOneUser({ email })
+  console.log(user)
   if (user) return { status: 400, message: 'User already exists' }
   const encryptedPassword = await new Promise((resolve, reject) => {
     bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS), (err, hash) => {
@@ -27,6 +28,20 @@ export const verifyUser = async ({ email, verificationCode }) => {
   const user = await getOneUser({ email, verification_code: verificationCode })
   if (!user) return false
   return await findOneAndUpdateUser({ email: user.email }, { is_verified: true })
+}
+
+export const authLogin = async ({ email, password }) => {
+  const user = await getOneUser({ email }, true)
+  if (!user) return false
+  const isPasswordMatch = await new Promise((resolve, reject) => {
+    bcrypt.compare(password, user.password, (err, hash) => {
+      if (err) reject(err)
+      resolve(hash)
+    })
+  })
+  if (!isPasswordMatch) return false
+  delete user.password
+  return user
 }
 
 export const verifyMailTemplate = async (email, verification_code) => {
