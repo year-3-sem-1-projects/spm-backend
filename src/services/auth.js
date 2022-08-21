@@ -4,6 +4,7 @@ import { createUser, findOneAndUpdateUser, getOneUser } from '../repository/user
 
 export const authRegister = async ({ email, username, password }) => {
   const user = await getOneUser({ email })
+  console.log(user)
   if (user) return { status: 400, message: 'User already exists' }
   const encryptedPassword = await new Promise((resolve, reject) => {
     bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS), (err, hash) => {
