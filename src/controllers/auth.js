@@ -5,7 +5,6 @@ import { authRegister, verifyUser, authLogin } from '../services/auth'
 
 export const register = asyncHandler(async (req, res) => {
   const result = await authRegister(req.body)
-  console.log(result)
   if (!result) return makeResponse({ res, status: 500, message: 'Registration Failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({
