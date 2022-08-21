@@ -13,3 +13,12 @@ export const getOneUser = async (filters, returnPassword) => {
   if (!returnPassword) delete user.password
   return user
 }
+
+export const findOneAndUpdateUser = async (filters, data) => {
+  const user = await User.findOneAndUpdate(filters, data, { new: true }).lean()
+  if (!user) return null
+
+  delete user.password
+  return user
+}
+

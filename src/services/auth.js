@@ -1,13 +1,10 @@
 import bcrypt from 'bcrypt'
 import { sendMail } from './email'
-import { createUser, getOneUser } from '../repository/user'
+import { createUser, findOneAndUpdateUser, getOneUser } from '../repository/user'
 
 export const authRegister = async ({ email, username, password }) => {
   const user = await getOneUser({ email })
-  if (user) {
-    console.log( __basedir + '/html/images/verificationCode.png');
-    return { status: 400, message: 'User already exists' }
-  }
+  if (user) return { status: 400, message: 'User already exists' }
   const encryptedPassword = await new Promise((resolve, reject) => {
     bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUNDS), (err, hash) => {
       if (err) reject(err)
@@ -26,6 +23,12 @@ export const authRegister = async ({ email, username, password }) => {
   return registeredUser
 }
 
+export const verifyUser = async ({ email, verificationCode }) => {
+  const user = await getOneUser({ email, verification_code: verificationCode })
+  if (!user) return false
+  return await findOneAndUpdateUser({ email: user.email }, { is_verified: true })
+}
+
 export const verifyMailTemplate = async (email, verification_code) => {
   const replacements = {
     verification_code: verification_code,
@@ -35,7 +38,7 @@ export const verifyMailTemplate = async (email, verification_code) => {
       filename: 'verificationCode',
       path: __basedir + '/html/images/verificationCode.png',
       cid: 'verificationCode',
-    }
+    },
   ]
   const subject = 'Welcome to Edupox'
   await sendMail(email, 'verificationCode', replacements, subject, attachments)
