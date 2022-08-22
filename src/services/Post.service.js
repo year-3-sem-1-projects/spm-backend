@@ -83,7 +83,7 @@ export const searchPosts = async (searchTerm) => {
     })
 }
 
-// Incraese post views
+// Increase post views
 export const increaseViewCount = async (postId) => {
   await PostModel.findByIdAndUpdate(postId, { $inc: { viewCount: 1 } })
   return await PostModel.findById(postId)
