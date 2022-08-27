@@ -1,8 +1,9 @@
 import { Router } from 'express'
-import { postQuestion } from '../controllers/question'
+import { postQuestion, removeQuestion } from '../controllers/question'
 
 const router = Router()
 
 router.post('/add', postQuestion)
+router.delete('/delete', removeQuestion)
 
 export default router
