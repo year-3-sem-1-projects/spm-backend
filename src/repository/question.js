@@ -14,3 +14,10 @@ export const deleteOneQuestion = async ({question_id}) => {
     console.log('repository', question)
     return question
 }
+
+export const updateOneQuestion = async (filters, data) => {
+    const question = await Question.updateOne(filters, data, { new: true })
+    if(!question) return null
+    console.log('repository', question)
+    return question
+}
