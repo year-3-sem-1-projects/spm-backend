@@ -7,6 +7,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    headline: {
+      type: String,
+      required: false,
+    },
     email: {
       type: String,
       required: true,
@@ -50,10 +54,9 @@ const UserSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
-    circle_count: {
-      type: Number,
+    user_circles: {
+      type: [String],
       required: false,
-      default: 0,
     },
     logins: {
       type: [
