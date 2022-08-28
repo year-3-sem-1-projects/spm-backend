@@ -8,6 +8,5 @@ const authRouter = express.Router()
 authRouter.post('/register', celebrate({[Segments.BODY] : registerSchema}), register)
 authRouter.post('/register/verify', verify)
 authRouter.post('/login', login)
-authRouter.get('/logout', logout)
 
 export default authRouter
