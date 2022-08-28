@@ -7,3 +7,11 @@ export const createCircleRepository = async (data) => {
     return { status: false, message: error.message }
   }
 }
+
+export const deleteCircleRepository = async (data) => {
+  try {
+    return await Circle.findOneAndDelete(data)
+  } catch (error) {
+    return { status: false, message: error.message }
+  }
+}
