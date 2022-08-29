@@ -1,6 +1,11 @@
 import asyncHandler from '../middleware/async'
 import { makeResponse } from '../utils/response'
-import { createCircleService, deleteCircleService, updateCircleService } from '../services/circle'
+import {
+  createCircleService,
+  deleteCircleService,
+  updateCircleService,
+  getCirclesService,
+} from '../services/circle'
 
 export const createCircle = asyncHandler(async (req, res) => {
   const result = await createCircleService(req.body)
@@ -21,4 +26,12 @@ export const updateCircle = asyncHandler(async (req, res) => {
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Update failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, message: 'Circle Update Successful.' })
+})
+
+export const getCircles = asyncHandler(async (req, res) => {
+  const result = await getCirclesService()
+  console.log(result)
+  if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, message: 'Circle Retrieval Successful.' })
 })

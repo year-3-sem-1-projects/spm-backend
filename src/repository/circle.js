@@ -23,3 +23,11 @@ export const updateCircleRepository = async (name, data) => {
     return { status: false, message: error.message }
   }
 }
+
+export const getCirclesRepository = async () => {
+  try {
+    return await Circle.find()
+  } catch (error) {
+    return { status: false, message: error.message }
+  }
+}
