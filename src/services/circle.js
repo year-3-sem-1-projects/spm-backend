@@ -13,8 +13,13 @@ export const deleteCircleService = async (data) => {
 }
 
 export const updateCircleService = async (data) => {
-  const { prevName, name } = data
-  delete data.prevName
-  if (prevName === name) delete data.name
-  return await updateCircleRepository(prevName, data)
+  if (data?.prevName) {
+    const { prevName, name } = data
+    delete data.prevName
+    if (prevName === name) delete data.name
+    return await updateCircleRepository(prevName, data)
+  }
+  const { name } = data
+  delete data.name
+  return await updateCircleRepository(name, data)
 }
