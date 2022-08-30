@@ -5,15 +5,16 @@ import {
   updateCircle,
   getCircles,
   joinCircle,
+  deleteMember,
 } from '../controllers/circle'
-import Circle from '../models/circle'
 
 const router = Router()
 
-router.post('/add', createCircle)
-router.delete('/delete/circle', deleteCircle)
-router.put('/update/circle', updateCircle)
 router.get('/circles', getCircles)
+router.post('/add', createCircle)
 router.post('/join', joinCircle)
+router.put('/update/circle', updateCircle)
+router.delete('/delete/circle', deleteCircle)
+router.delete('/delete/member', deleteMember)
 
 export default router
