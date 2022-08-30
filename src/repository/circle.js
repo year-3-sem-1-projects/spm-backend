@@ -1,4 +1,5 @@
 import Circle from '../models/circle'
+import User from '../models/user'
 
 export const createCircleRepository = async (data) => {
   try {
@@ -27,6 +28,17 @@ export const updateCircleRepository = async (name, data) => {
 export const getCirclesRepository = async () => {
   try {
     return await Circle.find()
+  } catch (error) {
+    return { status: false, message: error.message }
+  }
+}
+
+export const joinCircleRepository = async (name, user) => {
+  try {
+    const member = await Circle.findOneAndUpdate({ name }, { $push: { members: user } })
+    const { _id } = user
+    await User.findOneAndUpdate({ _id }, { $push: { user_circles: name } })
+    return member
   } catch (error) {
     return { status: false, message: error.message }
   }
