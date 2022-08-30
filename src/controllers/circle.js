@@ -5,6 +5,7 @@ import {
   deleteCircleService,
   updateCircleService,
   getCirclesService,
+  joinCircleService,
 } from '../services/circle'
 
 export const createCircle = asyncHandler(async (req, res) => {
@@ -34,4 +35,11 @@ export const getCircles = asyncHandler(async (req, res) => {
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, message: 'Circle Retrieval Successful.' })
+})
+
+export const joinCircle = asyncHandler(async (req, res) => {
+  const result = await joinCircleService(req.body)
+  if (!result) return makeResponse({ res, status: 500, message: 'Circle Join failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, message: 'Circle Join Successful.' })
 })
