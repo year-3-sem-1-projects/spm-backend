@@ -9,6 +9,7 @@ router.get('/:id', controller.getOnePost) // get one post
 router.put('/:id', controller.updatePost) // update one post
 router.delete('/:id', controller.deletePost) // delete one post
 router.get('/search/:search', controller.searchPosts) // search posts
+router.put('/workout/view/:id', controller.increaseViewCount)
 // router.get('/popular', controller.getMostPopularPosts) // get most popular posts
 
 export default router
