@@ -43,3 +43,14 @@ export const joinCircleRepository = async (name, user) => {
     return { status: false, message: error.message }
   }
 }
+
+export const deleteMemberRepository = async (name, user) => {
+  try {
+    const member = await Circle.findOneAndUpdate({ name }, { $pull: { members: user } })
+    const { _id } = user
+    await User.findOneAndUpdate({ _id }, { $pull: { user_circles: name } })
+    return member
+  } catch (error) {
+    return { status: false, message: error.message }
+  }
+}
