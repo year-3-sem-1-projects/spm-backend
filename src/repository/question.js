@@ -21,3 +21,10 @@ export const updateOneQuestion = async (filters, data) => {
     console.log('repository', question)
     return question
 }
+
+export const getMyQuestionsRepository = async ({user_email}) => {
+    const questions = await Question.find({user_email: user_email}).sort({created_at: -1})
+    if(!questions) return null
+    console.log('repository', questions)
+    return questions
+}
