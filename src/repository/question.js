@@ -28,3 +28,10 @@ export const getMyQuestionsRepository = async ({user_email}) => {
     console.log('repository', questions)
     return questions
 }
+
+export const getAllQuestionsRepository = async () => {
+    const questions = await Question.find().sort({created_at: -1})
+    if(!questions) return null
+    console.log('repository', questions)
+    return questions
+}
