@@ -33,6 +33,14 @@ export const getCirclesRepository = async () => {
   }
 }
 
+export const getCircleRepository = async (name) => {
+  try {
+    return await Circle.findOne(name)
+  } catch (error) {
+    return { status: false, message: error.message }
+  }
+}
+
 export const joinCircleRepository = async (name, user) => {
   try {
     const member = await Circle.findOneAndUpdate({ name }, { $push: { members: user } })

@@ -5,6 +5,7 @@ import {
   deleteCircleService,
   updateCircleService,
   getCirclesService,
+  getCircleService,
   joinCircleService,
   deleteMemberService,
 } from '../services/circle'
@@ -20,22 +21,28 @@ export const deleteCircle = asyncHandler(async (req, res) => {
   const result = await deleteCircleService(req.body)
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Deletion failed' })
   if (result.status) return makeResponse({ res, ...result })
-  return makeResponse({ res, message: 'Circle Deletion Successful.' })
+  return makeResponse({ res, data: result, message: 'Circle Deletion Successful.' })
 })
 
 export const updateCircle = asyncHandler(async (req, res) => {
   const result = await updateCircleService(req.body)
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Update failed' })
   if (result.status) return makeResponse({ res, ...result })
-  return makeResponse({ res, message: 'Circle Update Successful.' })
+  return makeResponse({ res, data: result, message: 'Circle Update Successful.' })
 })
 
 export const getCircles = asyncHandler(async (req, res) => {
   const result = await getCirclesService()
-  console.log(result)
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
   if (result.status) return makeResponse({ res, ...result })
-  return makeResponse({ res, message: 'Circle Retrieval Successful.' })
+  return makeResponse({ res, data: result, message: 'Circle Retrieval Successful.' })
+})
+
+export const getCircle = asyncHandler(async (req, res) => {
+  const result = await getCircleService(req.params)
+  if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, data: result, message: 'Circle Retrieval Successful.' })
 })
 
 export const joinCircle = asyncHandler(async (req, res) => {
