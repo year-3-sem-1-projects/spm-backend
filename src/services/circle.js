@@ -3,6 +3,7 @@ import {
   deleteCircleRepository,
   updateCircleRepository,
   getCirclesRepository,
+  getCircleRepository,
   joinCircleRepository,
   deleteMemberRepository,
 } from '../repository/circle'
@@ -29,6 +30,10 @@ export const updateCircleService = async (data) => {
 
 export const getCirclesService = async () => {
   return await getCirclesRepository()
+}
+
+export const getCircleService = async (name) => {
+  return await getCircleRepository(name)
 }
 
 export const joinCircleService = async (data) => {
