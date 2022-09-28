@@ -53,6 +53,10 @@ export const getCircleService = async (name) => {
   return await getCircleRepository(name)
 }
 
+export const getCircleWithMembersService = async (name) => {
+  return await getCircleRepository(name, true)
+}
+
 export const joinCircleService = async (data) => {
   const { name, user } = data
   return await joinCircleRepository(name, user)

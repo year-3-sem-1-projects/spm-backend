@@ -33,9 +33,15 @@ export const getCirclesRepository = async () => {
   }
 }
 
-export const getCircleRepository = async (name) => {
+export const getCircleRepository = async (name, member = false) => {
   try {
-    return await Circle.findOne(name)
+    const circle = (await Circle.findOne(name, { created_at: 0, updated_at: 0 }))._doc
+    console.log(circle)
+    if (member) {
+      const members = await User.find({ _id: { $in: circle.members } }, { username: 1, email: 1 })
+      return { ...circle, members }
+    }
+    return circle
   } catch (error) {
     return { status: false, message: error.message }
   }
