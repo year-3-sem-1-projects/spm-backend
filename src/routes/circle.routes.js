@@ -5,6 +5,7 @@ import {
   updateCircle,
   getCircles,
   getCircle,
+  getCircleWithMembers,
   joinCircle,
   removeMember,
   updateCircleAdmin,
@@ -14,6 +15,7 @@ const router = Router()
 
 router.get('/', getCircles)
 router.get('/:name', getCircle)
+router.get('/:name/members', getCircleWithMembers)
 router.post('/add', createCircle)
 router.post('/join', joinCircle)
 router.put('/update', updateCircle)

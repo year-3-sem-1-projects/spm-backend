@@ -7,6 +7,7 @@ import {
   updateCircleAdminService,
   getCirclesService,
   getCircleService,
+  getCircleWithMembersService,
   joinCircleService,
   removeMemberService,
 } from '../services/circle'
@@ -52,6 +53,22 @@ export const getCircle = asyncHandler(async (req, res) => {
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, data: result, message: 'Circle Retrieval Successful.' })
+})
+
+export const getCircleWithMembers = asyncHandler(async (req, res) => {
+  const result = await getCircleWithMembersService(req.params)
+  if (!result)
+    return makeResponse({
+      res,
+      status: 500,
+      message: 'Circle Retrieval with member details failed',
+    })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    data: result,
+    message: 'Circle Retrieval with member details Successful.',
+  })
 })
 
 export const joinCircle = asyncHandler(async (req, res) => {
