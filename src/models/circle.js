@@ -15,7 +15,7 @@ const CircleSchema = new mongoose.Schema(
       required: true,
     },
     admin: {
-      type: String,
+      type: Object,
       required: true,
     },
     members: {
