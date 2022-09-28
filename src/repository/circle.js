@@ -43,6 +43,8 @@ export const getCircleRepository = async (name) => {
 
 export const joinCircleRepository = async (name, user) => {
   try {
+    if (user.user_circles.includes(name))
+      return { status: false, message: 'You are already a member of this circle' }
     const member = await Circle.findOneAndUpdate({ name }, { $push: { members: user } })
     const { _id } = user
     await User.findOneAndUpdate({ _id }, { $push: { user_circles: name } })
@@ -52,8 +54,11 @@ export const joinCircleRepository = async (name, user) => {
   }
 }
 
-export const deleteMemberRepository = async (name, user) => {
+export const removeMemberRepository = async (name, removeUser) => {
   try {
+    const user = await User.findById({ _id: removeUser._id })
+    if (!user.user_circles.includes(name))
+      return { status: false, message: 'You are not a member of this circle' }
     const member = await Circle.findOneAndUpdate({ name }, { $pull: { members: user } })
     const { _id } = user
     await User.findOneAndUpdate({ _id }, { $pull: { user_circles: name } })

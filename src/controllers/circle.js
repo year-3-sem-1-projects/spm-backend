@@ -4,10 +4,11 @@ import {
   createCircleService,
   deleteCircleService,
   updateCircleService,
+  updateCircleAdminService,
   getCirclesService,
   getCircleService,
   joinCircleService,
-  deleteMemberService,
+  removeMemberService,
 } from '../services/circle'
 
 export const createCircle = asyncHandler(async (req, res) => {
@@ -31,6 +32,14 @@ export const updateCircle = asyncHandler(async (req, res) => {
   return makeResponse({ res, data: result, message: 'Circle Update Successful.' })
 })
 
+export const updateCircleAdmin = asyncHandler(async (req, res) => {
+  const result = await updateCircleAdminService(req.body)
+  if (!result)
+    return makeResponse({ res, status: 500, message: 'Circle Admin could not be updated' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, data: result, message: 'Circle admin updated.' })
+})
+
 export const getCircles = asyncHandler(async (req, res) => {
   const result = await getCirclesService()
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
@@ -52,8 +61,8 @@ export const joinCircle = asyncHandler(async (req, res) => {
   return makeResponse({ res, message: 'Circle Join Successful.' })
 })
 
-export const deleteMember = asyncHandler(async (req, res) => {
-  const result = await deleteMemberService(req.body)
+export const removeMember = asyncHandler(async (req, res) => {
+  const result = await removeMemberService(req.body)
   if (!result) return makeResponse({ res, status: 500, message: 'Member Deletion failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, message: 'Member Deletion Successful.' })

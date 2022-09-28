@@ -1,3 +1,4 @@
+import { info } from 'winston'
 import {
   createCircleRepository,
   deleteCircleRepository,
@@ -5,7 +6,7 @@ import {
   getCirclesRepository,
   getCircleRepository,
   joinCircleRepository,
-  deleteMemberRepository,
+  removeMemberRepository,
 } from '../repository/circle'
 
 export const createCircleService = async (data) => {
@@ -17,6 +18,8 @@ export const deleteCircleService = async (data) => {
 }
 
 export const updateCircleService = async (data) => {
+  if (data.user.email !== data.admin.email)
+    return { status: 401, message: 'You are not authorized to perform this action' }
   if (data?.prevName) {
     const { prevName, name } = data
     delete data.prevName
@@ -26,6 +29,20 @@ export const updateCircleService = async (data) => {
   const { name } = data
   delete data.name
   return await updateCircleRepository(name, data)
+}
+
+export const updateCircleAdminService = async (data) => {
+  if (data.user.email !== data.admin.email)
+    return { status: 401, message: 'You are not authorized to perform this action' }
+  if (data.newAdmin) {
+    const { name } = data
+    data.admin = data.newAdmin
+    delete data.newAdmin
+    delete data.user
+    delete data.name
+    return await updateCircleRepository(name, data)
+  }
+  return { status: 400, message: 'Bad request' }
 }
 
 export const getCirclesService = async () => {
@@ -41,7 +58,9 @@ export const joinCircleService = async (data) => {
   return await joinCircleRepository(name, user)
 }
 
-export const deleteMemberService = async (data) => {
-  const { name, user } = data
-  return await deleteMemberRepository(name, user)
+export const removeMemberService = async (data) => {
+  if (data.user.email !== data.admin.email)
+    return { status: 401, message: 'You are not authorized to perform this action' }
+  const { name, removeUser } = data
+  return await removeMemberRepository(name, removeUser)
 }
