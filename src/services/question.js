@@ -1,4 +1,4 @@
-import { addOneQuestion, deleteOneQuestion, updateOneQuestion, getMyQuestionsRepository, getAllQuestionsRepository } from "../repository/question"
+import { addOneQuestion, deleteOneQuestion, updateOneQuestion, getMyQuestionsRepository, getAllQuestionsRepository, getRecommendedQuestionsRepository } from "../repository/question"
 
 export const addQuestion = async (questionContent) => {
     const question = await addOneQuestion(questionContent)
@@ -32,6 +32,13 @@ export const getMyQuestionsService = async (userId) => {
 
 export const getAllQuestionsService = async () => {
     const questions = await getAllQuestionsRepository()
+    if(!questions) return false
+    console.log('service', questions)
+    return questions
+}
+
+export const getRecommendedQuestionsService = async (userId) => {
+    const questions = await getRecommendedQuestionsRepository(userId)
     if(!questions) return false
     console.log('service', questions)
     return questions
