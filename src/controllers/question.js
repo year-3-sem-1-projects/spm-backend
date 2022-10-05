@@ -1,6 +1,6 @@
 import asyncHandler from "../middleware/async";
 import { makeResponse } from "../utils/response";
-import { addQuestion, deleteQuestion, updateQuestion, getMyQuestionsService, getAllQuestionsService, getRecommendedQuestionsService } from "../services/question";
+import { addQuestion, deleteQuestion, updateQuestionService, getMyQuestionsService, getAllQuestionsService, getRecommendedQuestionsService } from "../services/question";
 
 export const postQuestion = asyncHandler(async (req, res) => {
     const result = await addQuestion(req.body)
@@ -28,8 +28,8 @@ export const removeQuestion = asyncHandler(async (req, res) => {
     return makeResponse({ res, message: "Question Deleted Successfully!" });
 })
 
-export const editQuestion = asyncHandler(async (req, res) => {
-    const result = await updateQuestion(req.body)
+export const updateQuestion = asyncHandler(async (req, res) => {
+    const result = await updateQuestionService(req.body)
     if (!result)
         return makeResponse({
             res,
