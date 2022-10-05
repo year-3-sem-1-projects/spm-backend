@@ -10,6 +10,7 @@ import {
   getCircleWithMembersService,
   joinCircleService,
   removeMemberService,
+  leaveCircleService,
 } from '../services/circle'
 
 export const createCircle = asyncHandler(async (req, res) => {
@@ -83,4 +84,11 @@ export const removeMember = asyncHandler(async (req, res) => {
   if (!result) return makeResponse({ res, status: 500, message: 'Member Deletion failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, message: 'Member Deletion Successful.' })
+})
+
+export const leaveCircle = asyncHandler(async (req, res) => {
+  const result = await leaveCircleService(req.body)
+  if (!result) return makeResponse({ res, status: 500, message: 'Leave Circle failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, message: 'Leave Circle Successful.' })
 })

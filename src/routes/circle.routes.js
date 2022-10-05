@@ -9,6 +9,7 @@ import {
   joinCircle,
   removeMember,
   updateCircleAdmin,
+  leaveCircle,
 } from '../controllers/circle'
 
 const router = Router()
@@ -22,5 +23,6 @@ router.put('/update', updateCircle)
 router.put('/update/admin', updateCircleAdmin)
 router.delete('/remove/circle', deleteCircle)
 router.delete('/remove/member', removeMember)
+router.delete('/leave', leaveCircle)
 
 export default router
