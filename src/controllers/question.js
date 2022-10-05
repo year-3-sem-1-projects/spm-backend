@@ -1,6 +1,6 @@
 import asyncHandler from "../middleware/async";
 import { makeResponse } from "../utils/response";
-import { addQuestion, deleteQuestion, updateQuestion, getMyQuestionsService, getAllQuestionsService } from "../services/question";
+import { addQuestion, deleteQuestion, updateQuestion, getMyQuestionsService, getAllQuestionsService, getRecommendedQuestionsService } from "../services/question";
 
 export const postQuestion = asyncHandler(async (req, res) => {
     const result = await addQuestion(req.body)
@@ -56,6 +56,19 @@ export const getMyQuestions = asyncHandler(async (req, res) => {
 
 export const getAllQuestions = asyncHandler(async (req, res) => {
     const result = await getAllQuestionsService()
+    if (!result)
+        return makeResponse({
+            res,
+            status: 400,
+            message: "Cannot get your questions, please try again.",
+    })
+    if (result.status) return makeResponse({ res, ...result })
+    console.log('controller', result)
+    return makeResponse({ res, data: result, message: "Questions Retrieved Successfully!" });
+})
+
+export const getRecommendedQuestions = asyncHandler(async (req, res) => {
+    const result = await getRecommendedQuestionsService(req.body)
     if (!result)
         return makeResponse({
             res,
