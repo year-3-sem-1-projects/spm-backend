@@ -1,4 +1,5 @@
 import Question from "../models/question";
+import User from "../models/user";
 
 export const addOneQuestion = async (questionContent) => {
     const question = await new Question(questionContent).save()
@@ -15,8 +16,8 @@ export const deleteOneQuestion = async ({question_id}) => {
     return question
 }
 
-export const updateOneQuestion = async (filters, data) => {
-    const question = await Question.updateOne(filters, data, { new: true })
+export const updateQuestionRepository = async (filters, data) => {
+    const question = await Question.updateOne(filters, data)
     if(!question) return null
     console.log('repository', question)
     return question
@@ -31,6 +32,21 @@ export const getMyQuestionsRepository = async ({user_email}) => {
 
 export const getAllQuestionsRepository = async () => {
     const questions = await Question.find().sort({created_at: -1})
+    if(!questions) return null
+    console.log('repository', questions)
+    return questions
+}
+
+export const getUserInterestsRepository = async (userEmail) => {
+    console.log('user email', userEmail)
+    const userInterests = await User.findOne({email: userEmail.user_email}, {interests: 1, _id: 0})
+    if(!userInterests) return null
+    console.log('repository', userInterests)
+    return userInterests
+}
+
+export const getRecommendedQuestionsRepository = async ({user_email}) => {
+    const questions = await Question.find({user_email: user_email}).sort({created_at: -1})
     if(!questions) return null
     console.log('repository', questions)
     return questions

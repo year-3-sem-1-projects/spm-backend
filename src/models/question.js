@@ -2,10 +2,6 @@ import mongoose from 'mongoose'
 
 const QuestionSchema = new mongoose.Schema(
     {
-        question_id: {
-            type: Number,
-            required: true
-        },
         question: {
             type: String,
             required: true
@@ -16,7 +12,7 @@ const QuestionSchema = new mongoose.Schema(
         },
         user_email: {  
             type: String,
-            required: true
+            required: true,
         }
     },
     {
