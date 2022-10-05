@@ -1,4 +1,5 @@
 import Question from "../models/question";
+import User from "../models/user";
 
 export const addOneQuestion = async (questionContent) => {
     const question = await new Question(questionContent).save()
@@ -34,6 +35,14 @@ export const getAllQuestionsRepository = async () => {
     if(!questions) return null
     console.log('repository', questions)
     return questions
+}
+
+export const getUserInterestsRepository = async (userEmail) => {
+    console.log('user email', userEmail)
+    const userInterests = await User.findOne({email: userEmail.user_email}, {interests: 1, _id: 0})
+    if(!userInterests) return null
+    console.log('repository', userInterests)
+    return userInterests
 }
 
 export const getRecommendedQuestionsRepository = async ({user_email}) => {
