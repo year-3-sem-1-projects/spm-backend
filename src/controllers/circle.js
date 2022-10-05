@@ -4,9 +4,12 @@ import {
   createCircleService,
   deleteCircleService,
   updateCircleService,
+  updateCircleAdminService,
   getCirclesService,
+  getCircleService,
+  getCircleWithMembersService,
   joinCircleService,
-  deleteMemberService,
+  removeMemberService,
 } from '../services/circle'
 
 export const createCircle = asyncHandler(async (req, res) => {
@@ -20,22 +23,52 @@ export const deleteCircle = asyncHandler(async (req, res) => {
   const result = await deleteCircleService(req.body)
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Deletion failed' })
   if (result.status) return makeResponse({ res, ...result })
-  return makeResponse({ res, message: 'Circle Deletion Successful.' })
+  return makeResponse({ res, data: result, message: 'Circle Deletion Successful.' })
 })
 
 export const updateCircle = asyncHandler(async (req, res) => {
   const result = await updateCircleService(req.body)
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Update failed' })
   if (result.status) return makeResponse({ res, ...result })
-  return makeResponse({ res, message: 'Circle Update Successful.' })
+  return makeResponse({ res, data: result, message: 'Circle Update Successful.' })
+})
+
+export const updateCircleAdmin = asyncHandler(async (req, res) => {
+  const result = await updateCircleAdminService(req.body)
+  if (!result)
+    return makeResponse({ res, status: 500, message: 'Circle Admin could not be updated' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, data: result, message: 'Circle admin updated.' })
 })
 
 export const getCircles = asyncHandler(async (req, res) => {
   const result = await getCirclesService()
-  console.log(result)
   if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
   if (result.status) return makeResponse({ res, ...result })
-  return makeResponse({ res, message: 'Circle Retrieval Successful.' })
+  return makeResponse({ res, data: result, message: 'Circle Retrieval Successful.' })
+})
+
+export const getCircle = asyncHandler(async (req, res) => {
+  const result = await getCircleService(req.params)
+  if (!result) return makeResponse({ res, status: 500, message: 'Circle Retrieval failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({ res, data: result, message: 'Circle Retrieval Successful.' })
+})
+
+export const getCircleWithMembers = asyncHandler(async (req, res) => {
+  const result = await getCircleWithMembersService(req.params)
+  if (!result)
+    return makeResponse({
+      res,
+      status: 500,
+      message: 'Circle Retrieval with member details failed',
+    })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    data: result,
+    message: 'Circle Retrieval with member details Successful.',
+  })
 })
 
 export const joinCircle = asyncHandler(async (req, res) => {
@@ -45,8 +78,8 @@ export const joinCircle = asyncHandler(async (req, res) => {
   return makeResponse({ res, message: 'Circle Join Successful.' })
 })
 
-export const deleteMember = asyncHandler(async (req, res) => {
-  const result = await deleteMemberService(req.body)
+export const removeMember = asyncHandler(async (req, res) => {
+  const result = await removeMemberService(req.body)
   if (!result) return makeResponse({ res, status: 500, message: 'Member Deletion failed' })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, message: 'Member Deletion Successful.' })
