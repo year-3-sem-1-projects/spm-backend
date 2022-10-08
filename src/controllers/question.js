@@ -68,7 +68,8 @@ export const getAllQuestions = asyncHandler(async (req, res) => {
 })
 
 export const getUserInterests = asyncHandler(async (req, res) => {
-    const result = await getUserInterestsService(req.body)
+    console.log('contoller request::::', req.params)
+    const result = await getUserInterestsService(req.params)
     if (!result)
         return makeResponse({
             res,
