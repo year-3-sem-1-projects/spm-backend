@@ -68,3 +68,11 @@ export const removeMemberService = async (data) => {
   const { name, removeUser } = data
   return await removeMemberRepository(name, removeUser)
 }
+
+export const leaveCircleService = async (data) => {
+  if (data.user.email === data.admin.email) {
+    return { status: 401, message: 'Admin is not allowed to leave the circle' }
+  }
+  const { name, user } = data
+  return await removeMemberRepository(name, user)
+}
