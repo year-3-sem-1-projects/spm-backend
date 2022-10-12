@@ -37,9 +37,9 @@ export const getAllQuestionsRepository = async () => {
     return questions
 }
 
-export const getUserInterestsRepository = async (userEmail) => {
-    console.log('user email', userEmail)
-    const userInterests = await User.findOne({email: userEmail.user_email}, {interests: 1, _id: 0})
+export const getUserInterestsRepository = async ({email}) => {
+    console.log('user email', email)
+    const userInterests = await User.findOne({email: email}, {interests: 1, _id: 0})
     if(!userInterests) return null
     console.log('repository', userInterests)
     return userInterests
