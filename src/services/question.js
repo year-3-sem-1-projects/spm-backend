@@ -45,10 +45,10 @@ export const getAllQuestionsService = async () => {
   return questions
 }
 
-export const getUserInterestsService = async (userEmail) => {
-  console.log('userEmail', userEmail)
+export const getUserInterestsService = async ({ email }) => {
+  console.log('userEmail', email)
   console.log('coming here')
-  const userInterests = await getUserInterestsRepository(userEmail)
+  const userInterests = await getUserInterestsRepository({ email })
   if (!userInterests) return false
   console.log('service', userInterests)
   return userInterests
