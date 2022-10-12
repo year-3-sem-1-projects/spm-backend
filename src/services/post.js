@@ -60,3 +60,34 @@ export const getRecommendedPostsService = async (userId) => {
   console.log('service', posts)
   return posts
 }
+
+//today
+
+// Search post category
+export const searchPosts = async (searchTerm) => {
+  return await PostModel.find({
+    $or: [{ category: { $regex: searchTerm, $options: 'i' } }],
+  })
+    .then((posts) => {
+      return posts
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
+
+// Increase post views
+export const increaseViewCount = async (postId) => {
+  await PostModel.findByIdAndUpdate(postId, { $inc: { viewCount: 1 } })
+  return await PostModel.findById(postId)
+    .then((post) => {
+      if (post) {
+        return post
+      } else {
+        throw new Error('Post not found')
+      }
+    })
+    .catch((error) => {
+      throw new Error(error.message)
+    })
+}
