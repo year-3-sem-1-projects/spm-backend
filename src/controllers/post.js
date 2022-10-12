@@ -100,3 +100,25 @@ export const getRecommendedPosts = asyncHandler(async (req, res) => {
   console.log('controller', result)
   return makeResponse({ res, message: 'Posts Retrieved Successfully!' })
 })
+
+//2022/11/10  5:55 p.m
+
+export const searchPosts = asyncHandler(async (req, res) => {
+  const result = await PostService.searchPosts(req.params.search)
+  if (!result) return makeResponse({ res, status: 500, message: 'Search Post Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Search Post Successfully ',
+  })
+})
+
+export const increaseViewCount = asyncHandler(async (req, res) => {
+  const result = await PostService.increaseViewCount(req.params.id)
+  if (!result) return makeResponse({ res, status: 500, message: 'Increase View Count is Failed' })
+  if (result.status) return makeResponse({ res, ...result })
+  return makeResponse({
+    res,
+    message: 'Increase View Count is Successfully ',
+  })
+})
