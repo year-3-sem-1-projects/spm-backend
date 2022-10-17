@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    cover_photo_url: {
+      type: String,
+      required: false,
+    },
     interests: {
       type: [String],
       required: false,
