@@ -9,9 +9,9 @@ export const createCircleRepository = async (data) => {
   }
 }
 
-export const deleteCircleRepository = async (data) => {
+export const deleteCircleRepository = async (name) => {
   try {
-    return await Circle.findOneAndDelete(data)
+    return await Circle.findOneAndDelete({ name })
   } catch (error) {
     return { status: false, message: error.message }
   }
