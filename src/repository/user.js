@@ -21,3 +21,12 @@ export const findOneAndUpdateUser = async (filters, {data}) => {
   delete user.password
   return user
 }
+
+export const deleteUser = async (filters) => {
+  const user = await User.deleteOne(filters)
+  
+  if (!user.acknowledged) return null
+
+  //returns { acknowledged: true, deletedCount: 1 } if deleted
+  return user.acknowledged
+}

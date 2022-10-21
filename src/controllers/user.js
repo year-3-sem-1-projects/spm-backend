@@ -1,6 +1,6 @@
 import asyncHandler from '../middleware/async'
 import { makeResponse } from '../utils/response'
-import { addInterests, updateUser, getUser } from '../services/user'
+import { addInterests, updateUser, getUser, deleteOne } from '../services/user'
 
 export const pickInterests = asyncHandler(async (req, res) => {
   //req.user wont work
@@ -37,4 +37,10 @@ export const getOneUser = asyncHandler(async (req, res) => {
     })
   if (result.status) return makeResponse({ res, ...result })
   return makeResponse({ res, message: 'Profile Gotten Successfully!', data: result })
+})
+export const deleteUser = asyncHandler(async (req, res) => {
+  const result = await deleteOne(req.body.email)
+  if(!result) return makeResponse({res, status: 400, message: 'Cannot delete your profile, please try again.'})
+  return makeResponse({res, message: 'Profile Deleted Successfully!'})
+
 })
