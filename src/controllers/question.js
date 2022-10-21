@@ -1,6 +1,17 @@
 import asyncHandler from "../middleware/async";
 import { makeResponse } from "../utils/response";
-import { addQuestion, deleteQuestion, updateQuestionService, getMyQuestionsService, getAllQuestionsService, getUserInterestsService, getRecommendedQuestionsService } from "../services/question";
+import { 
+    addQuestion, 
+    deleteQuestion, 
+    updateQuestionService, 
+    getMyQuestionsService, 
+    getAllQuestionsService, 
+    getUserInterestsService, 
+    getRecommendedQuestionsService, 
+    postAnswerService,
+    getAnswersService,
+    getMyAnswersService,
+} from "../services/question";
 
 export const postQuestion = asyncHandler(async (req, res) => {
     const result = await addQuestion(req.body)
@@ -92,6 +103,46 @@ export const getRecommendedQuestions = asyncHandler(async (req, res) => {
     if (result.status) return makeResponse({ res, ...result })
     console.log('controller', result)
     return makeResponse({ res, data: result, message: "Recommended Questions Retrieved Successfully!" });
+})
+
+export const postAnswer = asyncHandler(async (req, res) => {
+    const result = await postAnswerService(req.body)
+    if (!result)
+        return makeResponse({
+            res,
+            status: 400,
+            message: "Cannot add your answer, please try again.",
+    })
+    if (result.status) return makeResponse({ res, ...result })
+    console.log('controller', result)
+    return makeResponse({ res, message: "Answer Added Successfully!" });
+})
+
+export const getAnswers = asyncHandler(async (req, res) => {
+    console.log('contoller request::::', req.params)
+    const result = await getAnswersService(req.params)
+    if (!result)
+        return makeResponse({
+            res,
+            status: 400,
+            message: "Cannot get your answers, please try again.",
+    })
+    if (result.status) return makeResponse({ res, ...result })
+    console.log('controller', result)
+    return makeResponse({ res, data: result, message: "Answers Retrieved Successfully!" });
+})
+
+export const getMyAnswers = asyncHandler(async (req, res) => {
+    const result = await getMyAnswersService(req.params)
+    if (!result)
+        return makeResponse({
+            res,
+            status: 400,
+            message: "Cannot get your answers, please try again.",
+    })
+    if (result.status) return makeResponse({ res, ...result })
+    console.log('controller', result)
+    return makeResponse({ res, data: result, message: "Answers Retrieved Successfully!" });
 })
 
 

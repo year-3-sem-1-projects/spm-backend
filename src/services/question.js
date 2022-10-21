@@ -6,6 +6,9 @@ import {
   getAllQuestionsRepository,
   getUserInterestsRepository,
   getRecommendedQuestionsRepository,
+  postAnswerRepository,
+  getAnswersRepository,
+  getMyAnswersRepository,
 } from '../repository/question'
 
 export const addQuestion = async (questionContent) => {
@@ -60,4 +63,27 @@ export const getRecommendedQuestionsService = async ({email}) => {
     if(!recommendedQuestions) return false
     console.log('service', recommendedQuestions)
     return recommendedQuestions
+}
+
+export const postAnswerService = async (answerContent) => {
+    const answer = await postAnswerRepository(answerContent)
+    if(!answer) return false
+    console.log('service', answer)
+    return answer
+}
+
+export const getAnswersService = async ({questionId}) => {
+    console.log('questionId', questionId)
+    const answers = await getAnswersRepository(questionId)
+    if(!answers) return false
+    console.log('service', answers)
+    return answers
+}
+
+export const getMyAnswersService = async ({email}) => {
+  console.log('email', email)
+  const question = await getMyAnswersRepository(email)
+  if (!question) return false
+  console.log('service', question)
+  return question
 }
