@@ -18,6 +18,14 @@ const PostSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    user_email: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
   },
   {
     versionKey: false,
