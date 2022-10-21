@@ -8,6 +8,7 @@ import {
   getAllPosts,
   getUserInterests,
   getRecommendedPosts,
+  searchPosts,
 } from '../controllers/post'
 
 const router = Router()
@@ -19,6 +20,7 @@ router.get('/get/my-posts', getMyPosts)
 router.get('/get/all-posts', getAllPosts)
 router.get('/get/user-interests', getUserInterests)
 router.get('/get/recommended-posts', getRecommendedPosts)
+router.get('/search', searchPosts)
 
 export default router
 
