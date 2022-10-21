@@ -3,6 +3,7 @@ import { makeResponse } from '../utils/response'
 import { addInterests, updateUser } from '../services/user'
 
 export const pickInterests = asyncHandler(async (req, res) => {
+  //req.user wont work
   const result = await addInterests(req.user.email, req.body.interests)
   if (!result)
     return makeResponse({
@@ -15,7 +16,7 @@ export const pickInterests = asyncHandler(async (req, res) => {
 })
 
 export const editUser = asyncHandler(async (req, res) => {
-  const result = await updateUser(req.user.email, req.body.username, req.body.headline)
+  const result = await updateUser(req.body.email, req.body)
   if (!result)
     return makeResponse({
       res,
