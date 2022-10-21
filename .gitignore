@@ -5,3 +5,4 @@ logs/
 .env
 yarn.lock
 yarn-error.log
+.scannerwork/
