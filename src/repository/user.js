@@ -14,7 +14,7 @@ export const getOneUser = async (filters, returnPassword) => {
   return user
 }
 
-export const findOneAndUpdateUser = async (filters, data) => {
+export const findOneAndUpdateUser = async (filters, {data}) => {
   const user = await User.findOneAndUpdate(filters, data, { new: true }).lean()
   if (!user) return null
 

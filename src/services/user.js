@@ -7,9 +7,9 @@ export const addInterests = async (email, interests) => {
   return findOneAndUpdateUser({ email: user.email }, { interests })
 }
 
-export const updateUser = async (email, username, headline) => {
+export const updateUser = async (email, data) => {
   const user = await getOneUser({email})
   if (!user) return false
   if (!user.is_verified) return {status: 401, message: 'Please verify your account before adding interests.'}
-  return findOneAndUpdateUser({ email: user.email }, { username, headline })
+  return findOneAndUpdateUser({ email: user.email }, { data })
 }
