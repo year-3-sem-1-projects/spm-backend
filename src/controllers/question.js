@@ -87,11 +87,11 @@ export const getRecommendedQuestions = asyncHandler(async (req, res) => {
         return makeResponse({
             res,
             status: 400,
-            message: "Cannot get your questions, please try again.",
+            message: "Cannot get your recommended questions, please try again.",
     })
     if (result.status) return makeResponse({ res, ...result })
     console.log('controller', result)
-    return makeResponse({ res, message: "Questions Retrieved Successfully!" });
+    return makeResponse({ res, data: result, message: "Recommended Questions Retrieved Successfully!" });
 })
 
 

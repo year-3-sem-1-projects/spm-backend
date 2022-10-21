@@ -54,9 +54,10 @@ export const getUserInterestsService = async ({email}) => {
     return userInterests
 }
 
-export const getRecommendedQuestionsService = async (userId) => {
-  const questions = await getRecommendedQuestionsRepository(userId)
-  if (!questions) return false
-  console.log('service', questions)
-  return questions
+export const getRecommendedQuestionsService = async ({email}) => {
+    console.log('userEmail', email)
+    const recommendedQuestions = await getRecommendedQuestionsRepository({email})
+    if(!recommendedQuestions) return false
+    console.log('service', recommendedQuestions)
+    return recommendedQuestions
 }

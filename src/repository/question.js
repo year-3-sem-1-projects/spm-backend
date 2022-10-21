@@ -45,9 +45,19 @@ export const getUserInterestsRepository = async ({email}) => {
     return userInterests
 }
 
-export const getRecommendedQuestionsRepository = async ({user_email}) => {
-    const questions = await Question.find({user_email: user_email}).sort({created_at: -1})
-    if(!questions) return null
-    console.log('repository', questions)
-    return questions
+export const getRecommendedQuestionsRepository = async ({email}) => {
+    console.log('user email', email)
+    const recommendedQuestions = await Question.aggregate([
+        {
+            $lookup: {
+                from: "users",
+                localField: "category",
+                foreignField: "interests",
+                as: "recommended_questions"
+            }
+        }
+    ])
+    if(!recommendedQuestions) return null
+    console.log('repository', recommendedQuestions)
+    return recommendedQuestions
 }
