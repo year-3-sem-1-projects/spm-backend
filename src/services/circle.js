@@ -13,8 +13,11 @@ export const createCircleService = async (data) => {
   return await createCircleRepository(data)
 }
 
-export const deleteCircleService = async (data) => {
-  return await deleteCircleRepository(data)
+export const deleteCircleService = async ({ name, admin, user }) => {
+  console.log('name admin user', name, admin, user)
+  if (user.email !== admin.email)
+    return { status: 401, message: 'You are not authorized to perform this action' }
+  return await deleteCircleRepository(name)
 }
 
 export const updateCircleService = async (data) => {
@@ -28,6 +31,7 @@ export const updateCircleService = async (data) => {
   }
   const { name } = data
   delete data.name
+  delete data.user
   return await updateCircleRepository(name, data)
 }
 
