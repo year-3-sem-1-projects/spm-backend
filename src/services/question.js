@@ -30,9 +30,9 @@ export const updateQuestionService = async (questionContent) => {
   return question
 }
 
-export const getMyQuestionsService = async (userId) => {
-  console.log('userid', userId)
-  const questions = await getMyQuestionsRepository(userId)
+export const getMyQuestionsService = async ({email}) => {
+  console.log('userid', email)
+  const questions = await getMyQuestionsRepository({email})
   if (!questions) return false
   console.log('service', questions)
   return questions

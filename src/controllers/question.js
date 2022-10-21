@@ -42,7 +42,7 @@ export const updateQuestion = asyncHandler(async (req, res) => {
 })
 
 export const getMyQuestions = asyncHandler(async (req, res) => {
-    const result = await getMyQuestionsService(req.body)
+    const result = await getMyQuestionsService(req.params)
     if (!result)
         return makeResponse({
             res,

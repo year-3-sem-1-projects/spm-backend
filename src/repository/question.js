@@ -23,8 +23,8 @@ export const updateQuestionRepository = async (filters, data) => {
     return question
 }
 
-export const getMyQuestionsRepository = async ({user_email}) => {
-    const questions = await Question.find({user_email: user_email}).sort({created_at: -1})
+export const getMyQuestionsRepository = async ({email}) => {
+    const questions = await Question.find({user_email: email}).sort({created_at: -1})
     if(!questions) return null
     console.log('repository', questions)
     return questions
