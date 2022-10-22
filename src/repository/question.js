@@ -9,9 +9,9 @@ export const addOneQuestion = async (questionContent) => {
     return question
 }
 
-export const deleteOneQuestion = async ({question_id}) => {
-    console.log('repository', question_id)
-    const question = await Question.deleteOne({question_id})
+export const deleteOneQuestion = async (questionId) => {
+    console.log('repository', questionId.questionId)
+    const question = await Question.deleteOne({_id:questionId.questionId})
     if(!question) return null
     console.log('repository', question)
     return question
@@ -84,4 +84,12 @@ export const getMyAnswersRepository = async (email) => {
     if(!answers) return null
     console.log('repository', answers)
     return answers
+}
+
+export const getQuestionRepository = async ({questionId}) => {
+    console.log('question_id', questionId)
+    const question = await Question.findOne({_id: questionId})
+    if(!question) return null
+    console.log('repository', question)
+    return question
 }

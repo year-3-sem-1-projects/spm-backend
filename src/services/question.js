@@ -9,6 +9,7 @@ import {
   postAnswerRepository,
   getAnswersRepository,
   getMyAnswersRepository,
+  getQuestionRepository,
 } from '../repository/question'
 
 export const addQuestion = async (questionContent) => {
@@ -19,6 +20,7 @@ export const addQuestion = async (questionContent) => {
 }
 
 export const deleteQuestion = async (questionId) => {
+  console.log('service', questionId)
   const question = await deleteOneQuestion(questionId)
   if (!question) return false
   console.log('service', question)
@@ -83,6 +85,13 @@ export const getAnswersService = async ({questionId}) => {
 export const getMyAnswersService = async ({email}) => {
   console.log('email', email)
   const question = await getMyAnswersRepository(email)
+  if (!question) return false
+  console.log('service', question)
+  return question
+}
+
+export const getQuestionService = async (questionId) => {
+  const question = await getQuestionRepository(questionId)
   if (!question) return false
   console.log('service', question)
   return question
