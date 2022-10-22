@@ -1,5 +1,6 @@
 import Question from "../models/question";
 import User from "../models/user";
+import Answer from "../models/answer";
 
 export const addOneQuestion = async (questionContent) => {
     const question = await new Question(questionContent).save()
@@ -8,9 +9,9 @@ export const addOneQuestion = async (questionContent) => {
     return question
 }
 
-export const deleteOneQuestion = async ({question_id}) => {
-    console.log('repository', question_id)
-    const question = await Question.deleteOne({question_id})
+export const deleteOneQuestion = async (questionId) => {
+    console.log('repository', questionId.questionId)
+    const question = await Question.deleteOne({_id:questionId.questionId})
     if(!question) return null
     console.log('repository', question)
     return question
@@ -23,8 +24,8 @@ export const updateQuestionRepository = async (filters, data) => {
     return question
 }
 
-export const getMyQuestionsRepository = async ({user_email}) => {
-    const questions = await Question.find({user_email: user_email}).sort({created_at: -1})
+export const getMyQuestionsRepository = async ({email}) => {
+    const questions = await Question.find({user_email: email}).sort({created_at: -1})
     if(!questions) return null
     console.log('repository', questions)
     return questions
@@ -60,4 +61,35 @@ export const getRecommendedQuestionsRepository = async ({email}) => {
     if(!recommendedQuestions) return null
     console.log('repository', recommendedQuestions)
     return recommendedQuestions
+}
+
+export const postAnswerRepository = async (answerContent) => {
+    const answer = await Answer(answerContent).save()
+    if(!answer) return null
+    console.log('repository', answer)
+    return answer
+}
+
+export const getAnswersRepository = async (question_id) => {
+    console.log('question_id', question_id)
+    const answers = await Answer.find({question_id: question_id}).sort({created_at: -1})
+    if(!answers) return null
+    console.log('repository', answers)
+    return answers
+}
+
+export const getMyAnswersRepository = async (email) => {
+    console.log('email', email)
+    const answers = await Answer.find({user_email: email}).sort({created_at: -1})
+    if(!answers) return null
+    console.log('repository', answers)
+    return answers
+}
+
+export const getQuestionRepository = async ({questionId}) => {
+    console.log('question_id', questionId)
+    const question = await Question.findOne({_id: questionId})
+    if(!question) return null
+    console.log('repository', question)
+    return question
 }
