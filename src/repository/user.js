@@ -8,6 +8,7 @@ export const createUser = async (user) => {
 
 export const getOneUser = async (filters, returnPassword) => {
   const user = await User.findOne(filters).lean()
+  console.log('userrr', user)
   if (!user) return null
 
   if (!returnPassword) delete user.password
