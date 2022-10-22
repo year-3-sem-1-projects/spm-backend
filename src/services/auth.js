@@ -26,7 +26,9 @@ export const authRegister = async ({ email, username, password }) => {
 }
 
 export const verifyUser = async ({ email, verificationCode }) => {
-  const user = await getOneUser({ email, verification_code: verificationCode })
+  console.log(email, verificationCode)
+  const user = await getOneUser({ email: email})
+  console.log(user)
   if (!user) return false
   return await findOneAndUpdateUser({ email: user.email }, { is_verified: true })
 }
