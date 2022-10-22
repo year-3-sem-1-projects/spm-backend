@@ -18,6 +18,8 @@ export const authRegister = async ({ email, username, password }) => {
     email,
     password: encryptedPassword,
     verification_code: verificationCode,
+    photo_url: "",
+    cover_photo_url: ""
   })
   await verifyMailTemplate(email, verificationCode)
   return registeredUser
