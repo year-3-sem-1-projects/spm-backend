@@ -1,5 +1,5 @@
 {
-  "name": "spm-backend",
+  "name": "ds-backend",
   "version": "1.0.0",
   "main": "src/app.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ignore-path .gitignore"
   },
-  "repository": "https://github.com/year-3-sem-1-projects/spm-backend.git",
+  "repository": "https://github.com/Y3S2-Project-Group-0001/Ayurvedic-Store-Backend.git",
   "author": "",
   "license": "MIT",
   "dependencies": {
